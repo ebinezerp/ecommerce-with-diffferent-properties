@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import dt.b190043.demoproject.dao.ProductDao;
 import dt.b190043.demoproject.dao.SubCategoryDao;
 import dt.b190043.demoproject.factory.ProductFactory;
+import dt.b190043.demoproject.model.Mobile;
 import dt.b190043.demoproject.model.Product;
 
 @Controller
@@ -49,9 +50,11 @@ public class SellerController {
 	
 	
 	@PostMapping("/addproduct")
-	public String addProduct(@ModelAttribute("product")Product product)
+	public <T extends Product> String addProduct(HttpServletRequest httpServletRequest)
 	{
-		System.out.println(product);
+		
+		System.out.println(httpServletRequest.getAttribute("product"));
+		//productDao.addProduct(t);
 		return "redirect:/seller";
 	}
 }
